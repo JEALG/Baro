@@ -1,5 +1,4 @@
 <?php
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -18,16 +17,17 @@
 
 try {
     require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+    require_once dirname(__FILE__) . '/../../core/php/baro.inc.php';
     include_file('core', 'authentification', 'php');
 
     if (!isConnect('admin')) {
         throw new Exception(__('401 - Accès non autorisé', __FILE__));
     }
-    
-     if (init('action') == 'getBaro') {
+
+    if (init('action') == 'getBaro') {
         $baro = baro::byId(init('id'));
         if (!is_object($baro)) {
-            throw new Exception(__('Baro inconnu verifier l\'id', __FILE__));
+            throw new Exception(__('Plugin inconnu vérifier l\'ID', __FILE__));
         }
         $return = utils::o2a($baro);
         $return['cmd'] = array();
@@ -37,12 +37,26 @@ try {
             $return['cmd'][] = $cmd_info;
         }
         ajax::success($return);
-     }
+    }
 
-    
+    if (init('action') == 'autoDEL_eq') {
+        $eqLogic = baro::byId(init('id'));
+        if (!is_object($eqLogic)) {
+            throw new Exception(__('Baro eqLogic non trouvé : ', __FILE__) . init('id'));
+        }
+        foreach ($eqLogic->getCmd() as $cmd) {
+            $cmd->remove();
+            $cmd->save();
+        }
+        ajax::success();
+    }
+
     throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
     /*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-    ajax::error(displayExeption($e), $e->getCode());
+    if (version_compare(jeedom::version(), '4.4', '>=')) {
+        ajax::error(displayException($e), $e->getCode());
+    } else {
+        ajax::error(displayExeption($e), $e->getCode());
+    }
 }
-?>
