@@ -104,5 +104,14 @@
         "Équipement": "Apparecchiature",
         "Équipement non visible": "Apparecchiature non visibili",
         "Équipement visible": "Apparecchiature visibili"
+    },
+    "plugins\/baro\/plugin_info\/install.php": {
+        "Correction de l\\'Arrondi (Nombre de décimale) pour": "Correzione dell'arrotondamento (numero di decimali) per",
+        "Mise en place des nouveautés": "Implementazione delle novità",
+        "Mise à jour des équipement": "Aggiornamento delle apparecchiature",
+        "Par la valeur": "Per valore",
+        "Sauvegarde des équipements": "Salvataggio delle apparecchiature",
+        "Suppression des commandes obsolètes": "Eliminazione dei comandi obsoleti",
+        "Étape": "Fase"
     }
 }
