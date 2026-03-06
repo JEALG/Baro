@@ -81,7 +81,7 @@ function baro_update()
     try {
         $eqs = eqLogic::byType('baro');
         foreach ($eqs as $eq) {
-            $eq->save();
+            $eq->save(true);
         }
     } catch (Exception $e) {
         $e = print_r($e, 1);
@@ -108,7 +108,7 @@ function updateLogicalId($eqLogic, $from, $to, $_historizeRound = null, $name = 
         if ($name != null) {
             $command->setName($name);
         }
-        $command->save();
+        $command->save(true);
     }
 }
 
