@@ -87,7 +87,7 @@ function baro_update()
         $e = print_r($e, 1);
         log::add('baro', 'error', '[ALERT] baro_update ERROR: ' . $e);
     }
-    log::add('baro', 'debug', '│ :fg-warning:' . (__('Étape', __FILE__)) . ' 4/4 :/fg:───▶︎ ' . (__('Mise à jour des équipement', __FILE__)));
+    log::add('baro', 'debug', '│ :fg-warning:' . (__('Étape', __FILE__)) . ' 4/4 :/fg:───▶︎ ' . (__('Mise à jour des équipements', __FILE__)));
     //message::add('Plugin Tendance Baro', 'Merci pour la mise à jour de ce plugin, consultez le changelog.');
     foreach (eqLogic::byType('baro') as $baro) {
         $baro->getInformations();
