@@ -67,14 +67,17 @@ function baro_update()
 
     $plugin = plugin::byId('baro');
     $eqLogics = eqLogic::byType($plugin->getId());
+    log::add('baro', 'debug', '│ :fg-warning:' . (__('Étape', __FILE__)) . ' 1/4 :/fg:───▶︎ ' . (__('Mise en place des nouveautés', __FILE__)));
     foreach ($eqLogics as $eqLogic) {
         //updateLogicalId($eqLogic, 'tendance', 'td');
         //updateLogicalId($eqLogic, 'tendance_num', 'td_num');
         updateLogicalId($eqLogic, 'pressure', null, 2, 'Pression Atmosphérique');
         updateLogicalId($eqLogic, 'dPdT', null, 2);
     }
+    log::add('baro', 'debug', '│ :fg-warning:' . (__('Étape', __FILE__)) . ' 2/4 :/fg:───▶︎ ' . (__('Suppression des commandes obsolètes', __FILE__)));
 
     //resave eqs for new cmd:
+    log::add('baro', 'debug', '│ :fg-warning:' . (__('Étape', __FILE__)) . ' 3/4 :/fg:───▶︎ ' . (__('Sauvegarde des équipements', __FILE__)));
     try {
         $eqs = eqLogic::byType('baro');
         foreach ($eqs as $eq) {
@@ -84,7 +87,7 @@ function baro_update()
         $e = print_r($e, 1);
         log::add('baro', 'error', '[ALERT] baro_update ERROR: ' . $e);
     }
-
+    log::add('baro', 'debug', '│ :fg-warning:' . (__('Étape', __FILE__)) . ' 4/4 :/fg:───▶︎ ' . (__('Mise à jour des équipement', __FILE__)));
     //message::add('Plugin Tendance Baro', 'Merci pour la mise à jour de ce plugin, consultez le changelog.');
     foreach (eqLogic::byType('baro') as $baro) {
         $baro->getInformations();
@@ -99,6 +102,7 @@ function updateLogicalId($eqLogic, $from, $to, $_historizeRound = null, $name = 
             $command->setLogicalId($to);
         }
         if ($_historizeRound != null) {
+            log::add('baro', 'debug', '[INFO] ' . __('Correction de l\'Arrondi (Nombre de décimale) pour', __FILE__) . ' : ' . $from . ' ->  ' . __('Par la valeur', __FILE__) . ' : ' . $_historizeRound);
             $command->setConfiguration('historizeRound', $_historizeRound);
         }
         if ($name != null) {

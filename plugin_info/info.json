@@ -11,9 +11,9 @@
 	},
 	"licence": "AGPL",
 	"author": "JAG",
-	"require": "4.2",
+	"require": "4.3",
 	"os": {
-		"min": 10,
+		"min": 11,
 		"max": ""
 	},
 	"category": "weather",
