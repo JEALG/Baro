@@ -104,5 +104,14 @@
         "Équipement": "Equipamiento",
         "Équipement non visible": "Equipos no visibles",
         "Équipement visible": "Equipos visibles"
+    },
+    "plugins\/baro\/plugin_info\/install.php": {
+        "Correction de l\\'Arrondi (Nombre de décimale) pour": "Corrección del redondeo (número de decimales) para",
+        "Mise en place des nouveautés": "Implementación de novedades",
+        "Mise à jour des équipement": "Actualización de equipos",
+        "Par la valeur": "Por valor",
+        "Sauvegarde des équipements": "Copia de seguridad de los equipos",
+        "Suppression des commandes obsolètes": "Eliminación de comandos obsoletos",
+        "Étape": "Etapa"
     }
 }
